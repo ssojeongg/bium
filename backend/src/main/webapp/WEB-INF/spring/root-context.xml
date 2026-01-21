@@ -12,7 +12,7 @@
             http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- Component Scan: Service/Repository 등 (Controller 제외) -->
-    <context:component-scan base-package="org.example">
+    <context:component-scan base-package="org.com.bium">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
     </context:component-scan>

@@ -1,4 +1,4 @@
-package org.example.controller;
+package org.com.bium.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
