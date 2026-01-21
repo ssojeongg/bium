@@ -39,8 +39,8 @@
     <!-- SqlSessionFactory 설정 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath*:mappers/**/*.xml"/>
-        <property name="typeAliasesPackage" value="org.example.domain"/>
+        <property name="mapperLocations" value="classpath*:mapper/**/*.xml"/>
+        <property name="typeAliasesPackage" value="org.com.bium.**.dto"/>
 
         <!-- MyBatis 설정  -->
         <property name="configuration">
@@ -53,7 +53,7 @@
 
     <!-- Mapper 스캔  -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="org.example.**.mapper"/>
+        <property name="basePackage" value="org.com.bium.**.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
