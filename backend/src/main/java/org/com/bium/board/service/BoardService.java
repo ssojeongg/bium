@@ -41,4 +41,9 @@ public class BoardService {
         boardMapper.updateBoard(boardDto);
         return boardMapper.getByBoardId(boardDto.getBoardId());
     }
+
+    // board 삭제 기능 구현
+    public void deleteBoard(int boardId) {
+        boardMapper.deleteBoard(boardId);
+    }
 }

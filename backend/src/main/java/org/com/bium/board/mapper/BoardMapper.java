@@ -20,4 +20,7 @@ public interface BoardMapper {
 
     // board 수정 기능 구현
     void updateBoard(BoardDto boardDto);
+
+    // board 삭제 기능 구현
+    void deleteBoard(int boardId);
 }

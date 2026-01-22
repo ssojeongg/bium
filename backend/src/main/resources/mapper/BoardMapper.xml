@@ -51,4 +51,11 @@
             updated_at = NOW()
         WHERE board_id = #{boardId}
     </update>
+
+    <!--  board 삭제 기능 구현  -->
+    <update id="deleteBoard">
+        UPDATE board
+        SET is_active = 1
+        WHERE board_id = #{boardId}
+    </update>
 </mapper>

@@ -49,4 +49,11 @@ public class BoardController {
         BoardDto item = boardService.updateBoard(boardDto);
         return ResponseEntity.ok(item);
     }
+
+    // board 삭제 기능 구현
+    @DeleteMapping("/{boardId}")
+    public ResponseEntity<Void> deleteBoard(@PathVariable int boardId) {
+        boardService.deleteBoard(boardId);
+        return ResponseEntity.noContent().build();
+    }
 }
