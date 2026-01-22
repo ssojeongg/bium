@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/board")
@@ -26,4 +27,11 @@ public class BoardController {
         return ResponseEntity.created(location).build();
     }
 
+    // board 목록 조회 기능 구현
+    // GET :
+    @GetMapping
+    public ResponseEntity<List<BoardDto>> getBoard() {
+        List<BoardDto> list = boardService.getBoard();
+        return ResponseEntity.ok(list);
+    }
 }

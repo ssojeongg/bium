@@ -5,6 +5,8 @@ import org.com.bium.board.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class BoardService {
 
@@ -22,5 +24,10 @@ public class BoardService {
         }
         boardMapper.insertBoard(boardDto);
         return boardDto.getBoardId();
+    }
+
+    // board 목록 조회 기능 구현
+    public List<BoardDto> getBoard() {
+        return boardMapper.getBoard();
     }
 }
