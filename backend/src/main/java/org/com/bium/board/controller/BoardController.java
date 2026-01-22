@@ -28,10 +28,16 @@ public class BoardController {
     }
 
     // board 목록 조회 기능 구현
-    // GET :
     @GetMapping
     public ResponseEntity<List<BoardDto>> getBoard() {
         List<BoardDto> list = boardService.getBoard();
         return ResponseEntity.ok(list);
+    }
+
+    // board 상세 조회 기능 구현
+    @GetMapping("/{boardId}")
+    public ResponseEntity<BoardDto> getByBoardId(@PathVariable int boardId) {
+        BoardDto item = boardService.getByBoardId(boardId);
+        return ResponseEntity.ok(item);
     }
 }

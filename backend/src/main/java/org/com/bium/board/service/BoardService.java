@@ -30,4 +30,9 @@ public class BoardService {
     public List<BoardDto> getBoard() {
         return boardMapper.getBoard();
     }
+
+    // board 상세 조회 기능 구현
+    public BoardDto getByBoardId(int boardId) {
+        return boardMapper.getByBoardId(boardId);
+    }
 }

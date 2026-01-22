@@ -14,4 +14,7 @@ public interface BoardMapper {
 
     // board 목록 조회 기능 구현
     List<BoardDto> getBoard();
+
+    // board 상세 조회 기능 구현
+    BoardDto getByBoardId(int boardId);
 }
