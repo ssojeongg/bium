@@ -40,4 +40,13 @@ public class BoardController {
         BoardDto item = boardService.getByBoardId(boardId);
         return ResponseEntity.ok(item);
     }
+
+    // board 수정 기능 구현
+    @PutMapping("/{boardId}")
+    public ResponseEntity<BoardDto> updateBoard(@PathVariable int boardId, @RequestBody BoardDto boardDto) {
+
+        boardDto.setBoardId(boardId);
+        BoardDto item = boardService.updateBoard(boardDto);
+        return ResponseEntity.ok(item);
+    }
 }

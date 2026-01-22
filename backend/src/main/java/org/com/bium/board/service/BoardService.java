@@ -35,4 +35,10 @@ public class BoardService {
     public BoardDto getByBoardId(int boardId) {
         return boardMapper.getByBoardId(boardId);
     }
+
+    // board 수정 기능 구현
+    public BoardDto updateBoard(BoardDto boardDto) {
+        boardMapper.updateBoard(boardDto);
+        return boardMapper.getByBoardId(boardDto.getBoardId());
+    }
 }
