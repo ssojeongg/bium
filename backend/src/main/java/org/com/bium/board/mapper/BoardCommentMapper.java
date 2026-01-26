@@ -20,6 +20,7 @@ public interface BoardCommentMapper {
     BoardCommentDto getByBoardCommentId(int boardCommentId);
 
     // boardComment 수정 기능 구현
+    void updateBoardComment(BoardCommentDto boardCommentDto);
 
     // boardComment 삭제 기능 구현
 

@@ -43,6 +43,12 @@ public class BoardCommentController {
     }
 
     // boardComment 수정 기능 구현
+    @PutMapping("/{boardCommentId}")
+    public ResponseEntity<BoardCommentDto> updateBoardComment(@PathVariable int boardCommentId, @RequestBody BoardCommentDto boardCommentDto) {
+        boardCommentDto.setBoardCommentId(boardCommentId);
+        BoardCommentDto item = boardCommentService.updateBoardComment(boardCommentDto);
+        return ResponseEntity.ok(item);
+    }
 
     // boardComment 삭제 기능 구현
 }

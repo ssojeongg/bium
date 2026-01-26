@@ -36,6 +36,10 @@ public class BoardCommentService {
     }
 
     // boardComment 수정 기능 구현
+    public BoardCommentDto updateBoardComment(BoardCommentDto boardCommentDto) {
+        boardCommentMapper.updateBoardComment(boardCommentDto);
+        return boardCommentMapper.getByBoardCommentId(boardCommentDto.getBoardCommentId());
+    }
 
     // boardComment 삭제 기능 구현
 }
