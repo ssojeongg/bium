@@ -23,5 +23,5 @@ public interface BoardCommentMapper {
     void updateBoardComment(BoardCommentDto boardCommentDto);
 
     // boardComment 삭제 기능 구현
-
+    void deleteBoardComment(int boardCommentId);
 }

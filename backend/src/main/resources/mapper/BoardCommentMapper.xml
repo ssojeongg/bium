@@ -9,6 +9,7 @@
         SELECT COUNT(*) > 0
         FROM board
         WHERE board_id = #{boardId}
+        AND is_active = 1
     </select>
 
     <!--  boardComment 등록 기능 구현  -->
@@ -32,6 +33,7 @@
             created_at,
             updated_at
         FROM board_comment
+        WHERE is_active = 1
         ORDER BY board_comment_id DESC
     </select>
 
@@ -46,6 +48,7 @@
             updated_at
         FROM board_comment
         WHERE board_comment_id = #{boardCommentId}
+        AND is_active = 1
     </select>
 
     <!--  boardComment 수정 기능 구현  -->
@@ -59,4 +62,9 @@
     </update>
 
     <!--  boardComment 삭제 기능 구현  -->
+    <update id="deleteBoardComment">
+        UPDATE board_comment
+        SET is_active = 0
+        WHERE board_comment_id = #{boardCommentId}
+    </update>
 </mapper>

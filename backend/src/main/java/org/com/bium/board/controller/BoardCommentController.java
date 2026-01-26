@@ -51,4 +51,9 @@ public class BoardCommentController {
     }
 
     // boardComment 삭제 기능 구현
+    @DeleteMapping("/{boardCommentId}")
+    public ResponseEntity<BoardCommentDto> deleteBoardComment(@PathVariable int boardCommentId) {
+        boardCommentService.deleteBoard(boardCommentId);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -42,4 +42,7 @@ public class BoardCommentService {
     }
 
     // boardComment 삭제 기능 구현
+    public void deleteBoard(int boardCommentId) {
+        boardCommentMapper.deleteBoardComment(boardCommentId);
+    }
 }
