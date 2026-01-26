@@ -81,7 +81,7 @@
     </insert>
 
     <!-- Like_count +1 증가  -->
-    <update id="updateLikeCount" parameterType="int">
+    <update id="updateLikeCount" parameterType="map">
         UPDATE board_comment
         SET like_count = like_count + 1
         WHERE board_comment_id = #{boardCommentId}
@@ -95,6 +95,25 @@
     </select>
 
     <!--  BoardCommentLike 좋아요 취소 기능 구현  -->
+    <delete id="deleteBoardCommentLike" parameterType="map">
+        DELETE FROM board_comment_like
+        WHERE board_comment_id = #{boardCommentId}
+        AND user_id = #{userId}
+    </delete>
+
+    <!-- Like_count -1 감소  -->
+    <update id="minusLikeCount" parameterType="map">
+        UPDATE board_comment
+        SET like_count = like_count - 1
+        WHERE board_comment_id = #{boardCommentId}
+        AND like_count > 0
+    </update>
 
     <!--  BoardCommentLike 좋아요 존재 여부 확인 구현  -->
+    <select id="existsBoardCommentLike" resultType="int">
+    SELECT COUNT(*)
+    FROM board_comment_like
+    WHERE board_comment_id = #{boardCommentId}
+    AND user_id = #{userId}
+    </select>
 </mapper>

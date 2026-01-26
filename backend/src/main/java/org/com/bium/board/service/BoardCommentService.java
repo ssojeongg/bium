@@ -5,6 +5,7 @@ import org.com.bium.board.dto.BoardCommentLikeDto;
 import org.com.bium.board.mapper.BoardCommentMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -49,7 +50,13 @@ public class BoardCommentService {
     }
 
     // BoardCommentLike 좋아요 추가 기능 구현
+    @Transactional
     public int addBoardCommentLike(int boardCommentId, int userId) {
+        // BoardCommentLike 좋아요 존재 여부 확인
+        if(boardCommentMapper.existsBoardCommentLike(boardCommentId, userId) > 0) {
+            throw new IllegalArgumentException("이미 좋아요를 누른 댓글입니다.");
+        }
+
         // 좋아요 추가
         boardCommentMapper.addBoardCommentLike(boardCommentId,userId);
 
@@ -60,4 +67,16 @@ public class BoardCommentService {
         return boardCommentMapper.getLikeCount(boardCommentId);
     }
 
+    // BoardCommentLike 좋아요 삭제 기능 구현
+    @Transactional
+    public int deleteBoardCommentLike(int boardCommentId, int userId) {
+        // 좋아요 삭제
+        boardCommentMapper.deleteBoardCommentLike(boardCommentId,userId);
+
+        // 좋아요 -1
+        boardCommentMapper.minusLikeCount(boardCommentId);
+
+        // 증가된 like_count
+        return boardCommentMapper.getLikeCount(boardCommentId);
+    }
 }

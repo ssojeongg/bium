@@ -35,4 +35,16 @@ public interface BoardCommentMapper {
 
     // 증가된 like_count 조회
     int getLikeCount(int boardCommentId);
+
+    // BoardCommentLike 좋아요 삭제 기능 구현
+    void deleteBoardCommentLike(@Param("boardCommentId") int boardCommentId,
+                             @Param("userId") int userId);
+
+    // Like_count -1 증가
+    void minusLikeCount(int boardCommentId);
+
+    // BoardCommentLike 좋아요 존재 여부 확인 구현
+    int existsBoardCommentLike(@Param("boardCommentId") int boardCommentId,
+                                   @Param("userId") int userId);
+
 }

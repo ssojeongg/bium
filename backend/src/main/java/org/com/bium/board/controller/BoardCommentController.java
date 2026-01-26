@@ -67,4 +67,11 @@ public class BoardCommentController {
         return ResponseEntity.ok(updateLikeCount);
     }
 
+    // BoardCommentLike 좋아요 삭제 기능 구현
+    @DeleteMapping("/{boardCommentId}/like")
+    // /boardComment/1/like?userId=1
+    public ResponseEntity<Integer> deleteBoardCommentLike(@PathVariable int boardCommentId, @RequestParam int userId) {
+        int updateLikeCount = boardCommentService.deleteBoardCommentLike(boardCommentId, userId);
+        return ResponseEntity.ok(updateLikeCount);
+    }
 }
