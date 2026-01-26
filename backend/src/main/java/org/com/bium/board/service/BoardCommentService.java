@@ -1,7 +1,9 @@
 package org.com.bium.board.service;
 
 import org.com.bium.board.dto.BoardCommentDto;
+import org.com.bium.board.dto.BoardCommentLikeDto;
 import org.com.bium.board.mapper.BoardCommentMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,4 +47,17 @@ public class BoardCommentService {
     public void deleteBoard(int boardCommentId) {
         boardCommentMapper.deleteBoardComment(boardCommentId);
     }
+
+    // BoardCommentLike 좋아요 추가 기능 구현
+    public int addBoardCommentLike(int boardCommentId, int userId) {
+        // 좋아요 추가
+        boardCommentMapper.addBoardCommentLike(boardCommentId,userId);
+
+        // 좋아요 +1
+        boardCommentMapper.updateLikeCount(boardCommentId);
+
+        // 증가된 like_count
+        return boardCommentMapper.getLikeCount(boardCommentId);
+    }
+
 }

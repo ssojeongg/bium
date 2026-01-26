@@ -1,6 +1,7 @@
 package org.com.bium.board.mapper;
 
 
+import org.apache.ibatis.annotations.Param;
 import org.com.bium.board.dto.BoardCommentDto;
 
 import java.util.List;
@@ -24,4 +25,14 @@ public interface BoardCommentMapper {
 
     // boardComment 삭제 기능 구현
     void deleteBoardComment(int boardCommentId);
+
+    // BoardCommentLike 좋아요 추가 기능 구현
+    void addBoardCommentLike(@Param("boardCommentId") int boardCommentId,
+            @Param("userId") int userId);
+
+    // Like_count +1 증가
+    void updateLikeCount(int boardCommentId);
+
+    // 증가된 like_count 조회
+    int getLikeCount(int boardCommentId);
 }

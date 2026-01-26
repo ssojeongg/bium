@@ -12,22 +12,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @Builder
-public class BoardCommentDto {
+public class BoardCommentLikeDto {
+    private int likeId;
+
     private int boardCommentId;
 
-    private int boardId;
-
-    private String boardCommentName;
-
-    private String boardCommentTitle;
-
-    private String boardCommentContent;
+    private int userId;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime updatedAt;
-
-    private int likeCount;
 }

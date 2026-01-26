@@ -1,6 +1,8 @@
 package org.com.bium.board.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.com.bium.board.dto.BoardCommentDto;
+import org.com.bium.board.dto.BoardCommentLikeDto;
 import org.com.bium.board.service.BoardCommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -56,4 +58,13 @@ public class BoardCommentController {
         boardCommentService.deleteBoard(boardCommentId);
         return ResponseEntity.noContent().build();
     }
+
+    // BoardCommentLike 좋아요 추가 기능 구현
+    @PostMapping("/{boardCommentId}/like")
+    // /boardComment/1/like?userId=1
+    public ResponseEntity<Integer> addBoardCommentLike(@PathVariable int boardCommentId, @RequestParam int userId) {
+        int updateLikeCount = boardCommentService.addBoardCommentLike(boardCommentId, userId);
+        return ResponseEntity.ok(updateLikeCount);
+    }
+
 }
