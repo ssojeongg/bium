@@ -31,6 +31,9 @@ public class BoardCommentService {
     }
 
     // boardComment 상세 조회 기능 구현
+    public BoardCommentDto getByBoardCommentId(int boardCommentId) {
+        return boardCommentMapper.getByBoardCommentId(boardCommentId);
+    }
 
     // boardComment 수정 기능 구현
 

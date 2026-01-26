@@ -17,6 +17,7 @@ public interface BoardCommentMapper {
     List<BoardCommentDto> getBoardComment();
 
     // boardComment 상세 조회 기능 구현
+    BoardCommentDto getByBoardCommentId(int boardCommentId);
 
     // boardComment 수정 기능 구현
 

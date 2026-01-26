@@ -36,6 +36,11 @@ public class BoardCommentController {
     }
 
     // boardComment 상세 조회 기능 구현
+    @GetMapping("/{boardCommentId}")
+    public ResponseEntity<BoardCommentDto> getByBoardCommentId(@PathVariable int boardCommentId) {
+        BoardCommentDto item = boardCommentService.getByBoardCommentId(boardCommentId);
+        return ResponseEntity.ok(item);
+    }
 
     // boardComment 수정 기능 구현
 
