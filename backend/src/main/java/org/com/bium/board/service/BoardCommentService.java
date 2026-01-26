@@ -4,6 +4,8 @@ import org.com.bium.board.dto.BoardCommentDto;
 import org.com.bium.board.mapper.BoardCommentMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardCommentService {
     private final BoardCommentMapper boardCommentMapper;
@@ -24,6 +26,9 @@ public class BoardCommentService {
     }
 
     // boardComment 목록 조회 기능 구현
+    public List<BoardCommentDto> getBoardComment() {
+        return boardCommentMapper.getBoardComment();
+    }
 
     // boardComment 상세 조회 기능 구현
 

@@ -3,12 +3,10 @@ package org.com.bium.board.controller;
 import org.com.bium.board.dto.BoardCommentDto;
 import org.com.bium.board.service.BoardCommentService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/boardComment")
@@ -20,7 +18,7 @@ public class BoardCommentController {
     }
 
     // boardComment 등록 기능 구현
-    // POST :
+    // POST : userId, boardId, boardCommentName, boardCommentTitle, boardCommentContent
     @PostMapping
     public ResponseEntity<BoardCommentDto> insertBoardComment(@RequestBody BoardCommentDto boardCommentDto) {
         int boardCommentId = boardCommentService.insertBoardComment(boardCommentDto);
@@ -31,6 +29,11 @@ public class BoardCommentController {
 
 
     // boardComment 목록 조회 기능 구현
+    @GetMapping
+    public ResponseEntity<List<BoardCommentDto>> getBoardComment() {
+        List<BoardCommentDto> list = boardCommentService.getBoardComment();
+        return ResponseEntity.ok(list);
+    }
 
     // boardComment 상세 조회 기능 구현
 
