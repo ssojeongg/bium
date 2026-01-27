@@ -56,4 +56,20 @@ public class BoardController {
         boardService.deleteBoard(boardId);
         return ResponseEntity.noContent().build();
     }
+
+    // BoardLike 좋아요 추가 기능 구현
+    // board/1/like?userId=1
+    @PostMapping("/{boardId}/like")
+    public ResponseEntity<Integer> addBoardLike(@PathVariable int boardId, @RequestParam int userId) {
+        int updateLikeCount = boardService.addBoardLike(boardId, userId);
+        return ResponseEntity.ok(updateLikeCount);
+    }
+
+    // BoardLike 좋아요 삭제 기능 구현
+    // board/1/like?userId=1
+    @DeleteMapping("/{boardId}/like")
+    public ResponseEntity<Integer> deleteBoardLike(@PathVariable int boardId, @RequestParam int userId) {
+        int updateLikeCount = boardService.deleteBoardLike(boardId, userId);
+        return ResponseEntity.ok(updateLikeCount);
+    }
 }

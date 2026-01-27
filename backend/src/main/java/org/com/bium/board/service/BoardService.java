@@ -46,4 +46,35 @@ public class BoardService {
     public void deleteBoard(int boardId) {
         boardMapper.deleteBoard(boardId);
     }
+
+    // BoardLike 좋아요 추가 기능 구현
+    @Transactional
+    public int addBoardLike(int boardId, int userId) {
+        // BoardLike 좋아요 존재 여부 확인
+        if(boardMapper.existsBoardLike(boardId, userId) > 0) {
+            throw new IllegalArgumentException("이미 좋아요를 누른 댓글입니다.");
+        }
+
+        // 좋아요 추가
+        boardMapper.addBoardLike(boardId,userId);
+
+        // 좋아요 +1
+        boardMapper.updateLikeCount(boardId);
+
+        // 증가된 like_count
+        return boardMapper.getLikeCount(boardId);
+    }
+
+    // BoardLike 좋아요 삭제 기능 구현
+    @Transactional
+    public int deleteBoardLike(int boardId, int userId) {
+        // 좋아요 삭제
+        boardMapper.deleteBoardLike(boardId,userId);
+
+        // 좋아요 -1
+        boardMapper.minusLikeCount(boardId);
+
+        // 증가된 like_count
+        return boardMapper.getLikeCount(boardId);
+    }
 }
