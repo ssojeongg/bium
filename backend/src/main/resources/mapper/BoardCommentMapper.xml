@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.com.bium.board.mapper.BoardCommentMapper">
+    <!--  boardComment 등록 기능 구현 전에 board 유무 확인  -->
+    <select id="existsByBoardId" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM board
+        WHERE board_id = #{boardId}
+        AND is_active = 1
+    </select>
+
+    <!--  boardComment 등록 기능 구현  -->
+    <insert id="insertBoardComment" parameterType="BoardCommentDto" useGeneratedKeys="true" keyProperty="boardCommentId">
+        INSERT INTO board_comment (board_id, board_comment_name, board_comment_title, board_comment_content)
+        VALUES(
+            #{boardId},
+            #{boardCommentName},
+            #{boardCommentTitle},
+            #{boardCommentContent}
+        )
+    </insert>
+
+    <!--  boardComment 목록 조회 기능 구현  -->
+    <select id="getBoardComment" resultType="BoardCommentDto">
+        SELECT
+            board_comment_id,
+            board_comment_name,
+            board_comment_title,
+            board_comment_content,
+            like_count,
+            created_at,
+            updated_at
+        FROM board_comment
+        WHERE is_active = 1
+        ORDER BY board_comment_id DESC
+    </select>
+
+    <!--  boardComment 상세 조회 기능 구현  -->
+    <select id="getByBoardCommentId" resultType="BoardCommentDto">
+        SELECT
+            board_comment_id,
+            board_comment_name,
+            board_comment_title,
+            board_comment_content,
+            like_count,
+            created_at,
+            updated_at
+        FROM board_comment
+        WHERE board_comment_id = #{boardCommentId}
+        AND is_active = 1
+    </select>
+
+    <!--  boardComment 수정 기능 구현  -->
+    <update id="updateBoardComment" parameterType="BoardCommentDto">
+        UPDATE board_comment
+        SET board_comment_name = #{boardCommentName},
+            board_comment_title = #{boardCommentTitle},
+            board_comment_content = #{boardCommentContent},
+            updated_at = NOW()
+        WHERE board_comment_id = #{boardCommentId}
+    </update>
+
+    <!--  boardComment 삭제 기능 구현  -->
+    <update id="deleteBoardComment">
+        UPDATE board_comment
+        SET is_active = 0
+        WHERE board_comment_id = #{boardCommentId}
+    </update>
+
+    <!--  BoardCommentLike 좋아요 추가 기능 구현  -->
+    <insert id="addBoardCommentLike" parameterType="map">
+        INSERT INTO board_comment_like(board_comment_id, user_id, created_at)
+        VALUES (
+                #{boardCommentId},
+                #{userId},
+                NOW()
+        )
+    </insert>
+
+    <!-- Like_count +1 증가  -->
+    <update id="updateLikeCount" parameterType="map">
+        UPDATE board_comment
+        SET like_count = like_count + 1
+        WHERE board_comment_id = #{boardCommentId}
+    </update>
+
+    <!-- 증가된 like_count 조회  -->
+    <select id="getLikeCount" resultType="int">
+        SELECT like_count
+        FROM board_comment
+        WHERE board_comment_id = #{boardCommentId}
+    </select>
+
+    <!--  BoardCommentLike 좋아요 취소 기능 구현  -->
+    <delete id="deleteBoardCommentLike" parameterType="map">
+        DELETE FROM board_comment_like
+        WHERE board_comment_id = #{boardCommentId}
+        AND user_id = #{userId}
+    </delete>
+
+    <!-- Like_count -1 감소  -->
+    <update id="minusLikeCount" parameterType="map">
+        UPDATE board_comment
+        SET like_count = like_count - 1
+        WHERE board_comment_id = #{boardCommentId}
+        AND like_count > 0
+    </update>
+
+    <!--  BoardCommentLike 좋아요 존재 여부 확인 구현  -->
+    <select id="existsBoardCommentLike" resultType="int">
+    SELECT COUNT(*)
+    FROM board_comment_like
+    WHERE board_comment_id = #{boardCommentId}
+    AND user_id = #{userId}
+    </select>
+</mapper>
