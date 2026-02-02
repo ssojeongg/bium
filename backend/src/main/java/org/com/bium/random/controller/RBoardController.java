@@ -1,14 +1,13 @@
 package org.com.bium.random.controller;
 
+import org.com.bium.board.dto.BoardDto;
 import org.com.bium.random.dto.RBoardDto;
 import org.com.bium.random.service.RBoardService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/random")
@@ -27,6 +26,13 @@ public class RBoardController {
         URI location = URI.create("/random/" + boardId);
 
         return ResponseEntity.created(location).build();
+    }
+
+    // board 목록 조회 기능 구현
+    @GetMapping
+    public ResponseEntity<List<RBoardDto>> getRBoard() {
+        List<RBoardDto> list = rBoardService.getRBoard();
+        return ResponseEntity.ok(list);
     }
 
 }

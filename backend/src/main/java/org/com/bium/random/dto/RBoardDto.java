@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RBoardDto {
+    @JsonProperty("rBoardId")
     private int rBoardId;
 
     private int userId;

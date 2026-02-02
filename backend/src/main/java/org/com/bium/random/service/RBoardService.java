@@ -5,6 +5,8 @@ import org.com.bium.random.mapper.RBoardMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class RBoardService {
 
@@ -22,5 +24,10 @@ public class RBoardService {
         }
         rBoardMapper.insertRBoard(rBoardDto);
         return rBoardDto.getRBoardId();
+    }
+
+    // RBoard 목록 조회 기능 구현
+    public List<RBoardDto> getRBoard() {
+        return rBoardMapper.getRBoard();
     }
 }
