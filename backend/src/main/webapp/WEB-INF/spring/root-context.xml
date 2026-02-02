@@ -42,7 +42,7 @@
         <property name="mapperLocations" value="classpath*:mapper/**/*.xml"/>
         <property name="typeAliasesPackage" value="org.com.bium.**.dto"/>
 
-        <!-- MyBatis 설정  -->
+        <!-- MyBatis 설정 (중복 제거 및 통합) -->
         <property name="configuration">
             <bean class="org.apache.ibatis.session.Configuration">
                 <property name="mapUnderscoreToCamelCase" value="true"/>
