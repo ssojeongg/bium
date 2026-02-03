@@ -74,4 +74,38 @@
         WHERE r_board_id = #{rBoardId}
     </update>
 
+    <!--  RBoardLike 좋아요 추가 기능 구현  -->
+    <insert id="addRBoardLike" parameterType="map">
+        INSERT INTO r_board_like(r_board_id, user_id, created_at)
+        VALUES (
+        #{rBoardId},
+        #{userId},
+        NOW()
+        )
+    </insert>
+
+    <!--  Like_count +1 증가  -->
+    <update id="updateLikeCount" parameterType="map">
+        UPDATE r_board
+        SET like_count = like_count + 1
+        WHERE r_board_id = #{rBoardId}
+    </update>
+
+    <!--  증가된 like_count 조회  -->
+    <select id="getLikeCount" resultType="int">
+        SELECT like_count
+        FROM r_board
+        WHERE r_board_id = #{rBoardId}
+    </select>
+
+
+
+    <!--  RBoardLike 좋아요 존재 여부 확인 구현  -->
+    <select id="existsRBoardLike" resultType="int">
+        SELECT COUNT(*)
+        FROM r_board_like
+        WHERE r_board_id = #{rBoardId}
+        AND user_id = #{userId}
+    </select>
+
 </mapper>

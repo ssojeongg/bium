@@ -58,4 +58,11 @@ public class RBoardController {
         return ResponseEntity.noContent().build();
     }
 
+    // RBoardLike 좋아요 추가 기능 구현
+    // random/1/like?userId=1
+    @PostMapping("/{rBoardId}/like")
+    public ResponseEntity<Integer> addRBoardLike(@PathVariable int rBoardId, @RequestParam int userId) {
+        int updateLikeCount = rBoardService.addRBoardLike(rBoardId, userId);
+        return ResponseEntity.ok(updateLikeCount);
+    }
 }

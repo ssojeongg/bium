@@ -1,5 +1,6 @@
 package org.com.bium.random.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.com.bium.random.dto.RBoardDto;
 
 import java.util.List;
@@ -22,4 +23,20 @@ public interface RBoardMapper {
 
     // rBoard 삭제 기능 구현
     void deleteRBoard(int rBoardId);
+
+    // RBoardLike 좋아요 추가 기능 구현
+    void addRBoardLike(@Param("rBoardId") int rBoardId,
+                      @Param("userId") int userId);
+
+    // Like_count +1 증가
+    void updateLikeCount(int rBoardId);
+
+    // 증가된 like_count 조회
+    int getLikeCount(int rBoardId);
+
+
+
+    // RBoardLike 좋아요 존재 여부 확인 구현
+    int existsRBoardLike(@Param("rBoardId") int rBoardId,
+                        @Param("userId") int userId);
 }

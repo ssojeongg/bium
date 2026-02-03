@@ -46,4 +46,22 @@ public class RBoardService {
     public void deleteRBoard(int rBoardId) {
         rBoardMapper.deleteRBoard(rBoardId);
     }
+
+    // RBoardLike 좋아요 추가 기능 구현
+    @Transactional
+    public int addRBoardLike(int rBoardId, int userId) {
+        // RBoardLike 좋아요 존재 여부 확인
+        if(rBoardMapper.existsRBoardLike(rBoardId, userId) > 0) {
+            throw new IllegalArgumentException("이미 좋아요를 누른 게시글입니다.");
+        }
+
+        // 좋아요 추가
+        rBoardMapper.addRBoardLike(rBoardId,userId);
+
+        // 좋아요 +1
+        rBoardMapper.updateLikeCount(rBoardId);
+
+        // 증가된 like_count
+        return rBoardMapper.getLikeCount(rBoardId);
+    }
 }
