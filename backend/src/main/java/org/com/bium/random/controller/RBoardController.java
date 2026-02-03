@@ -1,5 +1,6 @@
 package org.com.bium.random.controller;
 
+import org.com.bium.board.dto.BoardDto;
 import org.com.bium.random.dto.RBoardDto;
 import org.com.bium.random.service.RBoardService;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,15 @@ public class RBoardController {
     @GetMapping("/{rBoardId}")
     public ResponseEntity<RBoardDto> getByRBoardId(@PathVariable int rBoardId) {
         RBoardDto item = rBoardService.getByRBoardId(rBoardId);
+        return ResponseEntity.ok(item);
+    }
+
+    // RBoard 수정 기능 구현
+    @PutMapping("/{rBoardId}")
+    public ResponseEntity<RBoardDto> updateRBoard(@PathVariable int rBoardId, @RequestBody RBoardDto rBoardDto) {
+
+        rBoardDto.setRBoardId(rBoardId);
+        RBoardDto item = rBoardService.updateRBoard(rBoardDto);
         return ResponseEntity.ok(item);
     }
 

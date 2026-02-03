@@ -16,4 +16,7 @@ public interface RBoardMapper {
 
     // rBoard 상세 조회 기능 구현
     RBoardDto getByRBoardId(int rBoardId);
+
+    // rBoard 수정 기능 구현
+    void updateRBoard(RBoardDto rBoardDto);
 }
