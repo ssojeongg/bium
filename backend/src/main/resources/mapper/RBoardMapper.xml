@@ -35,4 +35,18 @@
         ORDER BY r_board_id DESC
     </select>
 
+    <!--  rBoard 상세 조회 기능 구현  -->
+    <select id="getByRBoardId" resultType="RBoardDto">
+        SELECT
+        r_board_id,
+        user_id,
+        r_board_title,
+        r_board_content,
+        like_count,
+        created_at,
+        updated_at
+        FROM r_board
+        WHERE r_board_id = #{rBoardId}
+    </select>
+
 </mapper>

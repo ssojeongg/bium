@@ -39,6 +39,7 @@
     <select id="getByBoardId" resultType="BoardDto">
         SELECT
             board_id,
+            user_id,
             board_title,
             like_count,
             created_at,

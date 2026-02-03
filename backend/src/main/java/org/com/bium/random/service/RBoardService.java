@@ -30,4 +30,9 @@ public class RBoardService {
     public List<RBoardDto> getRBoard() {
         return rBoardMapper.getRBoard();
     }
+
+    // RBoard 상세 조회 기능 구현
+    public RBoardDto getByRBoardId(int rBoardId) {
+        return rBoardMapper.getByRBoardId(rBoardId);
+    }
 }
