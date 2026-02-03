@@ -1,6 +1,5 @@
 package org.com.bium.random.service;
 
-import org.com.bium.board.dto.BoardDto;
 import org.com.bium.random.dto.RBoardDto;
 import org.com.bium.random.mapper.RBoardMapper;
 import org.springframework.stereotype.Service;
@@ -41,5 +40,10 @@ public class RBoardService {
     public RBoardDto updateRBoard(RBoardDto rBoardDto) {
         rBoardMapper.updateRBoard(rBoardDto);
         return rBoardMapper.getByRBoardId(rBoardDto.getRBoardId());
+    }
+
+    // RBoard 삭제 기능 구현
+    public void deleteRBoard(int rBoardId) {
+        rBoardMapper.deleteRBoard(rBoardId);
     }
 }

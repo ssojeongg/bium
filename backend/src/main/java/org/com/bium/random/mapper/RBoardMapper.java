@@ -19,4 +19,7 @@ public interface RBoardMapper {
 
     // rBoard 수정 기능 구현
     void updateRBoard(RBoardDto rBoardDto);
+
+    // rBoard 삭제 기능 구현
+    void deleteRBoard(int rBoardId);
 }

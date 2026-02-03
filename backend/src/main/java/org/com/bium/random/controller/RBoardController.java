@@ -51,4 +51,11 @@ public class RBoardController {
         return ResponseEntity.ok(item);
     }
 
+    // rBoard 삭제 기능 구현
+    @DeleteMapping("/{rBoardId}")
+    public ResponseEntity<Void> deleteRBoard(@PathVariable int rBoardId) {
+        rBoardService.deleteRBoard(rBoardId);
+        return ResponseEntity.noContent().build();
+    }
+
 }
