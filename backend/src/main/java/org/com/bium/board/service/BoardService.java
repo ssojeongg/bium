@@ -74,7 +74,7 @@ public class BoardService {
         // 좋아요 -1
         boardMapper.minusLikeCount(boardId);
 
-        // 증가된 like_count
+        // 감소된 like_count
         return boardMapper.getLikeCount(boardId);
     }
 }

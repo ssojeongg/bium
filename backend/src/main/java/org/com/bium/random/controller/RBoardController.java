@@ -65,4 +65,12 @@ public class RBoardController {
         int updateLikeCount = rBoardService.addRBoardLike(rBoardId, userId);
         return ResponseEntity.ok(updateLikeCount);
     }
+
+    // RBoardLike 좋아요 삭제 기능 구현
+    // random/1/like?userId=1
+    @DeleteMapping("/{rBoardId}/like")
+    public ResponseEntity<Integer> deleteRBoardLike(@PathVariable int rBoardId, @RequestParam int userId) {
+        int updateLikeCount = rBoardService.deleteRBoardLike(rBoardId, userId);
+        return ResponseEntity.ok(updateLikeCount);
+    }
 }

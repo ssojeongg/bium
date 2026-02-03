@@ -64,4 +64,17 @@ public class RBoardService {
         // 증가된 like_count
         return rBoardMapper.getLikeCount(rBoardId);
     }
+
+    // RBoardLike 좋아요 삭제 기능 구현
+    @Transactional
+    public int deleteRBoardLike(int rBoardId, int userId) {
+        // 좋아요 삭제
+        rBoardMapper.deleteRBoardLike(rBoardId,userId);
+
+        // 좋아요 -1
+        rBoardMapper.minusLikeCount(rBoardId);
+
+        // 감소된 like_count
+        return rBoardMapper.getLikeCount(rBoardId);
+    }
 }
